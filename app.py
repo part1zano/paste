@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route('/', methods=['POST', 'GET'])
 def main():
 	if request.method == 'POST':
-		return url_for('/{0}'.format(db.new_paste(request.form['paste'])))
+		return '{0}{1}\n'.format(request.url_root, str(db.new_paste(request.form['paste'])))
 
 	return 'this is a test pastebin'
 
