@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
 import unidb
 
-engine = create_engine('postgresql://pgsql@localhost/paste')
+engine = create_engine('postgresql://pgsql@{server}/{dbname}'.format(server='172.16.32.1', dbname='paste'))
 
 dbSession = sessionmaker(bind=engine)
 Base = declarative_base()
@@ -14,3 +14,16 @@ class Paste(Base):
 	id = Column(Integer, primary_key=True)
 	paste = Column(unidb.CoerceUTF8)
 
+
+def new_paste(paste):
+	session = dbSession()
+	new_paste = Paste(paste=u'{0}'.format(paste))
+	session.add(new_paste)
+	session.commit()
+	return new_paste.id
+
+def get_paste(id):
+	session = dbSession()
+	for paste in session.query(Paste).filter(Paste.id.in_([id])).all():
+		return paste.paste
+	return 'oops, no such paste'
