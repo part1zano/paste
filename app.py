@@ -22,6 +22,15 @@ def pasteid(pasteid):
 	paste = unicode(escape(paste)).replace('	', '    ').replace(' ', '&nbsp;').replace('\n', '<br />')
 	return paste
 
+@app.route('/new', methods=['POST', 'GET'])
+def form():
+	if request.method == 'POST':
+		return redirect('{0}{1}'.format(request.url_root, str(db.new_paste(request.form['paste']))))
+	return '''
+<form method="POST" action="/new">
+	<textarea name="paste" cols="80" rows="25"></textarea><br />
+	<input type="submit" value="Paste" />
+</form>'''
 
 if __name__ == '__main__':
 	sys.path = ['.'] + sys.path
