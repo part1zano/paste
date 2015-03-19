@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, render_template, Markup, escape
+from flask import Flask, request, redirect, url_for, render_template
 import db
 import re
 
@@ -14,8 +14,11 @@ def main():
 @app.route('/<int:pasteid>')
 def pasteid(pasteid):
 	paste = db.get_paste(pasteid)
-	paste = str(escape(paste)).replace('	', ' ').replace(' ', '&nbsp;').replace('\n', '<br />')
-	
+	paste = re.sub('	', '    ', paste)
+	paste = re.sub(' ', '&nbsp;', paste)
+	paste = re.sub('<', '&lt;', paste)
+	paste = re.sub('>', '&gt;', paste)
+	paste = re.sub('[\n\r]', '<br />', paste)
 	return paste
 
 
