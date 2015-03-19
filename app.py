@@ -13,7 +13,12 @@ def main():
 
 @app.route('/<int:pasteid>')
 def pasteid(pasteid):
-	return re.sub('\n', '<br />', db.get_paste(pasteid))
+	paste = db.get_paste(pasteid)
+	paste = re.sub('\s', '&nbsp;', paste)
+	paste = re.sub('<', '&lt;', paste)
+	paste = re.sub('>', '&gt;', paste)
+	paste = re.sub('\n', '<br />')
+	return paste
 
 
 if __name__ == '__main__':
