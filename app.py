@@ -14,7 +14,7 @@ def main():
 @app.route('/<int:pasteid>')
 def pasteid(pasteid):
 	paste = db.get_paste(pasteid)
-	paste = str(escape(paste)).replace('	', '    ').replace(' ', '&nbsp;').replace('\n', '<br />')
+	paste = unicode(escape(paste)).replace('	', '    ').replace(' ', '&nbsp;').replace('\n', '<br />')
 	return paste
 
 
