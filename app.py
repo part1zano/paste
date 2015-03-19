@@ -1,6 +1,8 @@
 from flask import Flask, request, redirect, url_for, render_template, escape, Markup
 import db
 import markdown
+import sys
+import os
 
 app = Flask(__name__)
 
@@ -9,7 +11,7 @@ def main():
 	if request.method == 'POST':
 		return '{0}{1}\n'.format(request.url_root, str(db.new_paste(request.form['paste'])))
 	
-	with open('README.md', 'r') as f:
+	with open(os.path.join(sys.path[0], 'README.md'), 'r') as f:
 		content = f.read()
 	
 	return Markup(markdown.markdown(content))
@@ -22,4 +24,5 @@ def pasteid(pasteid):
 
 
 if __name__ == '__main__':
+	sys.path.prepend('.')
 	app.run(debug=True, host='0.0.0.0', port=8080)
