@@ -9,7 +9,7 @@ def main():
 	if request.method == 'POST':
 		return '{0}{1}\n'.format(request.url_root, str(db.new_paste(request.form['paste'])))
 
-	return 'this is a test pastebin'
+	return 'this is a test pastebin' # FIXME :: add man page @ main
 
 @app.route('/<int:pasteid>')
 def pasteid(pasteid):
