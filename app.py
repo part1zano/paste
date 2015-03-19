@@ -17,7 +17,7 @@ def pasteid(pasteid):
 	paste = re.sub('\s', '&nbsp;', paste)
 	paste = re.sub('<', '&lt;', paste)
 	paste = re.sub('>', '&gt;', paste)
-	paste = re.sub('\n', '<br />')
+	paste = re.sub('\n', '<br />', paste)
 	return paste
 
 
