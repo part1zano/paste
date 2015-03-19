@@ -16,13 +16,13 @@ def main():
 	
 	return Markup(markdown.markdown(content))
 
-@app.route('/<int:pasteid>')
+@app.route('/<int:pasteid>') # FIXME :: syntax hl, indent is ugly
 def pasteid(pasteid):
 	paste = db.get_paste(pasteid)
 	paste = unicode(escape(paste)).replace('	', '    ').replace(' ', '&nbsp;').replace('\n', '<br />')
 	return paste
 
-@app.route('/new', methods=['POST', 'GET'])
+@app.route('/new', methods=['POST', 'GET']) # FIXME :: template for form, bootstrap form
 def form():
 	if request.method == 'POST':
 		return redirect('{0}{1}'.format(request.url_root, str(db.new_paste(request.form['paste']))))
