@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/', methods=['POST', 'GET'])
 def main():
 	if request.method == 'POST':
-		return '{0}{1}\n'.format(request.url_root, str(db.new_paste(request.form['paste'])))
+		return '{0}{1}\n'.format(request.url_root, db.new_paste(request.form['paste']))
 	
 	with open(os.path.join(sys.path[0], 'README.md'), 'r') as f:
 		content = f.read()
@@ -25,7 +25,7 @@ def pasteid(pasteid):
 @app.route('/new', methods=['POST', 'GET']) # FIXME :: template for form, bootstrap form
 def form():
 	if request.method == 'POST':
-		return redirect('{0}{1}'.format(request.url_root, str(db.new_paste(request.form['paste']))))
+		return redirect('{0}{1}'.format(request.url_root, db.new_paste(request.form['paste'])))
 	return '''
 <form method="POST" action="/new">
 	<textarea name="paste" cols="80" rows="25"></textarea><br />
