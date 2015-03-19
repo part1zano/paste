@@ -1,6 +1,6 @@
-from flask import Flask, request, redirect, url_for, render_template, escape
+from flask import Flask, request, redirect, url_for, render_template, escape, Markup
 import db
-import re
+import markdown
 
 app = Flask(__name__)
 
@@ -8,8 +8,11 @@ app = Flask(__name__)
 def main():
 	if request.method == 'POST':
 		return '{0}{1}\n'.format(request.url_root, str(db.new_paste(request.form['paste'])))
-
-	return 'this is a test pastebin' # FIXME :: add man page @ main
+	
+	with open('README.md', 'r') as f:
+		content = f.read()
+	
+	return Markup(markdown.markdown(content))
 
 @app.route('/<int:pasteid>')
 def pasteid(pasteid):
