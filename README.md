@@ -1,4 +1,5 @@
 # paste
+A small pastebin
 ## SYNOPSIS
 Paste is a small python-powered pastebin. Currently uses postgres as the database and Flask as the web framework
 ## USAGE
