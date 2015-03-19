@@ -5,5 +5,5 @@ Paste is a small python-powered pastebin. Currently uses postgres as the databas
 ## USAGE
     some-command | curl -F "paste=<-" http://paste.bein.link
 ### Alternarive usage
-You can also use [http://paste.bein.link/new][this form] to submit a paste
+You can also use [this form](http://paste.bein.link/new) to submit a paste
 
