@@ -18,7 +18,7 @@ def main():
 @app.route('/<int:pasteid>') # FIXME :: syntax hl, indent is ugly
 def pasteid(pasteid):
 	paste = db.get_paste(pasteid)
-        if request.args.get('term') == 'true':
+        if request.args.get('term') in ('true', 'yes'):
             pass
         else:
             paste = unicode(escape(paste)).replace('	', '    ').replace(' ', '&nbsp;').replace('\n', '<br />')
