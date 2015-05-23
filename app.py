@@ -19,7 +19,10 @@ def main():
 @app.route('/<int:pasteid>') # FIXME :: syntax hl, indent is ugly
 def pasteid(pasteid):
 	paste = db.get_paste(pasteid)
-	paste = unicode(escape(paste)).replace('	', '    ').replace(' ', '&nbsp;').replace('\n', '<br />')
+        if request.args.get('term') == 'true':
+            pass
+        else:
+            paste = unicode(escape(paste)).replace('	', '    ').replace(' ', '&nbsp;').replace('\n', '<br />')
 	return paste
 
 @app.route('/new', methods=['POST', 'GET']) # FIXME :: template for form, bootstrap form
