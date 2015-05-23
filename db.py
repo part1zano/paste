@@ -15,7 +15,7 @@ class Paste(Base):
 	paste = Column(unidb.CoerceUTF8)
 
 def initdb():
-	pass # FIXME :: initdb()
+	pass # FIXME :: initdb() and push initial page to table
 
 def new_paste(paste):
 	session = dbSession()

@@ -11,9 +11,8 @@ def main():
 	if request.method == 'POST':
 		return '{0}{1}\n'.format(request.url_root, db.new_paste(request.form['paste']))
 	
-	with open(os.path.join(sys.path[0], 'README.md'), 'r') as f:
-		content = f.read()
-	
+	content = db.get_paste(1) # the main page must be stated as paste (id(1))
+
 	return Markup(markdown.markdown(content))
 
 @app.route('/<int:pasteid>') # FIXME :: syntax hl, indent is ugly
@@ -36,5 +35,4 @@ def form():
 </form>'''
 
 if __name__ == '__main__':
-	sys.path = ['.'] + sys.path
 	app.run(debug=True, host='0.0.0.0', port=8080)
