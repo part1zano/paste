@@ -21,7 +21,7 @@ def pasteid(pasteid):
         if request.args.get('term') in ('true', 'yes'):
             pass
         else:
-            paste = unicode(escape(paste)).replace('	', '    ').replace(' ', '&nbsp;').replace('\n', '<br />')
+            paste = "<pre>{0}</pre>".format(paste)
 	return paste
 
 @app.route('/new', methods=['POST', 'GET']) # FIXME :: template for form, bootstrap form
