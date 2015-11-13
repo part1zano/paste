@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
 import unidb
 
-engine = create_engine('postgresql://pgsql@{server}/{dbname}'.format(server='172.16.32.1', dbname='paste')) # FIXME :: server, dbname
+engine = create_engine('postgresql://paste@{server}/{dbname}'.format(server='172.16.32.1', dbname='paste')) # FIXME :: server, dbname
 
 dbSession = sessionmaker(bind=engine)
 Base = declarative_base()
