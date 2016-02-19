@@ -6,6 +6,16 @@ import os
 import random
 
 numbers = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen']
+actions = ['plus', 'minus', 'multiplied by']
+
+def perform_math(arg1, arg2, action):
+	if action == 'plus':
+		return int(arg1) + int(arg2)
+	elif action == 'minus':
+		return int(arg1) - int(arg2)
+	else:
+		return int(arg1) * int(arg2)
+
 
 app = Flask(__name__)
 
@@ -30,16 +40,16 @@ def pasteid(pasteid):
 @app.route('/new', methods=['POST', 'GET']) # FIXME :: template for form, bootstrap form
 def form():
 	if request.method == 'POST':
-		if numbers.index(request.form['arg1']) + numbers.index(request.form['arg2']) == int(request.form['result']):
+		if perform_math(arg1, arg2, action) == int(request.form['result']):
 			return redirect('{0}{1}'.format(request.url_root, db.new_paste(request.form['paste'])))
-		else:
-			return 'wrong captcha'
+		return 'wrong captcha'
 	return '''
 <form method="POST" action="/new">
 	<textarea name="paste" cols="80" rows="25"></textarea><br />
-	{arg1} plus {arg2} = <input type="text" name="result" />
+	{arg1} {action} {arg2} = <input type="text" name="result" />
 	<input type="hidden" name="arg1" value="{arg1}" />
 	<input type="hidden" name="arg2" value="{arg2}" />
+	<input type="hidden" name="action" value="{action}" />
 	<input type="submit" value="Paste" />
 </form>'''.format(arg1=numbers[random.randint(0, len(numbers)-1)], arg2=numbers[random.randint(0, len(numbers)-1)])
 
