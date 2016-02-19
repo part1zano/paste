@@ -5,7 +5,7 @@ import sys
 import os
 import random
 
-numbers = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen']
+numbers = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
 actions = ['plus', 'minus', 'multiplied by']
 
 def perform_math(arg1, arg2, action):
