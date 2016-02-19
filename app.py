@@ -3,6 +3,7 @@ import db
 import markdown
 import sys
 import os
+import random
 
 numbers = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
 results = numbers + ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eightteen']
@@ -37,7 +38,7 @@ def form():
 	return '''
 <form method="POST" action="/new">
 	<textarea name="paste" cols="80" rows="25"></textarea><br />
-	{arg1} plus {arg2} = <input type="text" name="result />
+	{arg1} plus {arg2} = <input type="text" name="result" />
 	<input type="hidden" name="arg1" value="{arg1}" />
 	<input type="hidden" name="arg2" value="{arg2}" />
 	<input type="submit" value="Paste" />
