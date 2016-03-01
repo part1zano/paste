@@ -44,7 +44,7 @@ def form():
 		arg2 = request.form['arg2']
 		action = request.form['action']
 		try:
-			result = int(request.form['result'])
+			result = int(request.form['result'], 0)
 		except:
 			return 'wrong captcha'
 		if perform_math(arg1, arg2, action) == result:
