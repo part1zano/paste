@@ -43,7 +43,11 @@ def form():
 		arg1 = request.form['arg1']
 		arg2 = request.form['arg2']
 		action = request.form['action']
-		if perform_math(arg1, arg2, action) == int(request.form['result']):
+		try:
+			result = int(request.form['result'])
+		except:
+			return 'wrong captcha'
+		if perform_math(arg1, arg2, action) == result:
 			return redirect('{0}{1}'.format(request.url_root, db.new_paste(request.form['paste'])))
 		return 'wrong captcha'
 	return '''
