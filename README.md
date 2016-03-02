@@ -6,4 +6,4 @@ Paste is a small python-powered pastebin. Currently uses postgres as the databas
     some-command | curl -F "paste=<-" http://paste.bein.link
 ### Alternarive usage
 You can also use [this form](http://paste.bein.link/new) to submit a paste
-
+testowo
