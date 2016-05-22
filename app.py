@@ -1,8 +1,6 @@
-from flask import Flask, request, redirect, url_for, render_template, escape, Markup
+from flask import Flask, request, redirect, Markup
 import db
 import markdown
-import sys
-import os
 
 app = Flask(__name__)
 
