@@ -1,6 +1,6 @@
-from sqlalchemy import create_engine, Table, Column, Integer, MetaData
+from sqlalchemy import create_engine, Column, Integer
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy.orm import sessionmaker
 import unidb
 
 engine = create_engine('postgresql://paste@{server}/{dbname}'.format(server='172.16.32.1', dbname='paste')) # FIXME :: server, dbname
