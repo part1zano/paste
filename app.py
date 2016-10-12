@@ -3,6 +3,8 @@ import db
 import markdown
 import random
 
+favicon = '<link rel="shortcut icon" href="static/favicon.png" type="image/png" />' # an ugly hack in fact
+
 numbers = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
 actions = ['plus', 'minus', 'multiplied by']
 
@@ -24,7 +26,7 @@ def main():
 	
 	content = db.get_paste(1) # the main page must be stated as paste (id(1))
 
-	return Markup(markdown.markdown(content))
+	return Markup(favicon + '\n' + markdown.markdown(content))
 
 @app.route('/<int:pasteid>') # FIXME :: syntax hl, indent is ugly
 def pasteid(pasteid):
@@ -32,7 +34,7 @@ def pasteid(pasteid):
 	if request.args.get('term') in ('true', 'yes'):
 		pass
 	else:
-		paste = Markup(u'<pre>{0}</pre>').format(paste)
+		paste = favicon + '\n' + Markup(u'<pre>{0}</pre>').format(paste)
 	return paste
 
 @app.route('/new', methods=['POST', 'GET']) # FIXME :: template for form, bootstrap form
@@ -49,6 +51,7 @@ def form():
 			return redirect('{0}{1}'.format(request.url_root, db.new_paste(request.form['paste'])))
 		return 'wrong captcha'
 	return '''
+{fi}
 <form method="POST" action="/new">
 	<textarea name="paste" cols="80" rows="25"></textarea><br />
 	{arg1} {action} {arg2} = <input type="text" name="result" />
@@ -56,7 +59,12 @@ def form():
 	<input type="hidden" name="arg2" value="{arg2}" />
 	<input type="hidden" name="action" value="{action}" />
 	<input type="submit" value="Paste" />
-</form>'''.format(arg1=numbers[random.randint(0, len(numbers)-1)], arg2=numbers[random.randint(0, len(numbers)-1)], action=actions[random.randint(0, len(actions)-1)])
+</form>'''.format(
+        arg1=numbers[random.randint(0, len(numbers)-1)], 
+        arg2=numbers[random.randint(0, len(numbers)-1)], 
+        action=actions[random.randint(0, len(actions)-1)], 
+        fi=favicon
+        )
 
 if __name__ == '__main__':
 	app.run(debug=True, host='0.0.0.0', port=8080)
