@@ -3,7 +3,7 @@ import db
 import markdown
 import random
 
-favicon = '<link rel="shortcut icon" href="static/favicon.png" type="image/png" />' # an ugly hack in fact
+favicon = '<link rel="shortcut icon" href="/static/favicon.png" type="image/png" />' # an ugly hack in fact
 
 numbers = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
 actions = ['plus', 'minus', 'multiplied by']
