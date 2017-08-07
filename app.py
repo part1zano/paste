@@ -17,9 +17,8 @@ def perform_math(arg1, arg2, action):
 
 app = Flask(__name__)
 # Sentry
-from raven.contrib.flask import Sentry
-sentry = Sentry(app, dsn='https://fcc034cc271a448587d3b6418fd1cc8e:4a73ef01e8d44c5abc0dab5a978c8682@sentry.io/200787')
-sentry.captureMessage('fuck you sentry')
+# from raven.contrib.flask import Sentry
+# sentry = Sentry(app, dsn='https://fcc034cc271a448587d3b6418fd1cc8e:4a73ef01e8d44c5abc0dab5a978c8682@sentry.io/200787')
 
 @app.route('/', methods=['POST', 'GET'])
 def main():
