@@ -15,7 +15,13 @@ class Paste(Base):
 	paste = Column(unidb.CoerceUTF8)
 
 def initdb():
-	pass # FIXME :: initdb() and push initial page to table
+	Base.metadata.create_all(engine)
+	session = dbSession()
+	with open('README.md', 'r') as f:
+		paste = f.read()
+	new_paste = Paste(paste=u'{0}'.format(paste))
+	session.add(new_paste)
+	session.commit()
 
 def new_paste(paste):
 	session = dbSession()
@@ -29,3 +35,6 @@ def get_paste(id):
 	for paste in session.query(Paste).filter(Paste.id.in_([id])).all():
 		return paste.paste
 	return 'oops, no such paste'
+
+if __name__ == '__main__':
+	initdb()
