@@ -56,7 +56,7 @@ def form():
 	<input type="hidden" name="arg2" value="{arg2}" />
 	<input type="hidden" name="action" value="{action}" />
 	<input type="submit" value="Paste" />
-</form>'''.format(arg1=numbers[random.randint(0, len(numbers)-1)], arg2=numbers[random.randint(0, len(numbers)-1)], action=actions[random.randint(0, len(actions)-1)])
+</form>'''.format(arg1=random.choice(numbers), arg2=random.choice(numbers), action=random.choice(actions))
 
 if __name__ == '__main__':
 	app.run(debug=True, host='0.0.0.0', port=8080)
