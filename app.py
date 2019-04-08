@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, Markup
+from flask import Flask, request, redirect, Markup, url_for
 import db
 import markdown
 import random
