@@ -23,7 +23,7 @@ app = Flask(__name__)
 def main():
     if request.method == 'POST':
         # return '{0}{1}\n'.format(request.url_root, db.new_paste(request.form['paste']))
-        return url_for('paste', pasteid=db.new_paste(request.form['paste']))
+        return url_for('pasteid', pasteid=db.new_paste(request.form['paste']))
 
     content = db.get_paste(1)  # the main page must be stated as paste (id(1))
 
