@@ -39,7 +39,7 @@ def pasteid(pasteid):
     return paste
 
 
-@app.route('/new', methods=['POST', 'GET'])
+@app.route('/new', methods=['POST', 'GET'])  # FIXME :: template for form, bootstrap form
 def form():
     if request.method == 'POST':
         arg1 = request.form['arg1']
