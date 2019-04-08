@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, Markup, url_for
+from flask import Flask, request, redirect, Markup
 import db
 import markdown
 import random
@@ -22,8 +22,7 @@ app = Flask(__name__)
 @app.route('/', methods=['POST', 'GET'])
 def main():
     if request.method == 'POST':
-        # return '{0}{1}\n'.format(request.url_root, db.new_paste(request.form['paste']))
-        return url_for('pasteid', pasteid=db.new_paste(request.form['paste']))
+        return '{0}{1}\n'.format(request.url_root, db.new_paste(request.form['paste']))
 
     content = db.get_paste(1)  # the main page must be stated as paste (id(1))
 
