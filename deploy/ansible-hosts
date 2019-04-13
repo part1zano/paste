@@ -1,5 +1,5 @@
 [freebsd]
-bein.link ansible_port=2222 ansible_user=che ssh_args=-o ForwardAgent=yes
+bein.link
 foo@bein.link ansible_connection=sshjail
 
 [freebsd:vars]
