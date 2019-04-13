@@ -1,0 +1,20 @@
+---
+- hosts: bein.link
+  tasks:
+      - name: update code
+        git:
+            repo: "/home/che/paste.git"
+            dest: "/home/jail/foo/usr/local/www/paste"
+        become: yes
+        notify: restart uwsgi
+
+- hosts: foo@bein.link
+  become: yes
+  handlers:
+      - name: restart uwsgi
+        service:
+            name: uwsgi
+            state: restarted
+            arguments:
+                - "paste"
+        become: yes
