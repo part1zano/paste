@@ -4,5 +4,3 @@ foo@bein.link ansible_connection=sshjail
 
 [freebsd:vars]
 ansible_python_interpreter=/usr/local/bin/python2.7
-ansible_port=2222
-ansible_ssh_user=che
