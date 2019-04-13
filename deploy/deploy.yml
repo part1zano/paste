@@ -15,5 +15,5 @@
         service:
             name: uwsgi
             state: restarted
-            # arguments:
-            #     - "paste"
+            arguments:
+                - "paste"
