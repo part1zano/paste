@@ -35,7 +35,7 @@ def pasteid(pasteid):
     if request.args.get('term') in ('true', 'yes'):
         pass
     else:
-        paste = Markup(u'fuck you<br /> <pre>{0}</pre>').format(paste)
+        paste = Markup(u'<pre>{0}</pre>').format(paste)
     return paste
 
 
