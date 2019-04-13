@@ -12,6 +12,7 @@
   become: yes
   handlers:
       - name: restart uwsgi
+        listen: restart uwsgi
         service:
             name: uwsgi
             state: restarted
