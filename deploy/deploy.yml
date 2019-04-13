@@ -6,13 +6,13 @@
             repo: "/home/che/paste.git"
             dest: "/home/jail/foo/usr/local/www/paste"
         become: yes
-        notify: restart uwsgi
-        listen: restart uwsgi
+        notify: restart
 
 - hosts: foo@bein.link
   become: yes
   handlers:
       - name: restart uwsgi
+        listen: restart
         service:
             name: uwsgi
             state: restarted
