@@ -1,19 +1,18 @@
 ---
-- hosts: bein.link
+- hosts: all
+  become: yes
   tasks:
       - name: update code
         git:
             repo: "/home/che/paste.git"
             dest: "/home/jail/foo/usr/local/www/paste"
-        become: yes
+        when: inventory_hostname == "bein.link"
 
-- hosts: foo@bein.link
-  become: yes
-  tasks:
+  handlers:
       - name: restart uwsgi
+        delegate_to: foo@bein.link
         service:
             name: uwsgi
             state: restarted
             # arguments:
             #     - "paste"
-        become: yes
