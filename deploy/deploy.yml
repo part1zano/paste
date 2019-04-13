@@ -6,17 +6,14 @@
             repo: "/home/che/paste.git"
             dest: "/home/jail/foo/usr/local/www/paste"
         become: yes
-        register: update
 
 - hosts: foo@bein.link
   become: yes
   tasks:
       - name: restart uwsgi
-        # listen: restart
         service:
             name: uwsgi
             state: restarted
             arguments:
                 - "paste"
-        become: yes
-        when: update.changed
+        # become: yes
