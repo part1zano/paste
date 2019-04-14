@@ -32,7 +32,7 @@ def main():
 @app.route('/<int:pasteid>')  # FIXME :: syntax hl, indent is ugly
 def pasteid(pasteid):
     paste = db.get_paste(pasteid)
-    if request.args.get('term') in ('true', 'yes'):
+    if request.args.get('term') in ('true', 'yes', 'da'):
         pass
     else:
         paste = Markup(u'<pre>{0}</pre>').format(paste)
