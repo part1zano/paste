@@ -5,9 +5,13 @@
       - name: update code
         git:
             repo: "/home/che/paste.git"
-            dest: "/home/jail/foo/usr/local/www/paste"
+            dest: "{{ jails_dir }}/{{ jail }}/{{ jail_prefix }}/www/paste"
         when: inventory_hostname == "bein.link"
         notify: restart uwsgi
+        vars:
+            jail: "foo"
+            jails_dir: "/home/jail"
+            jail_prefix: "/usr/local"
 
   handlers:
       - name: restart uwsgi
