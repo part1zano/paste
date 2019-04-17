@@ -1,6 +1,7 @@
 ---
 - hosts: all
   become: yes
+  become_flags: "-H -S"
   tasks:
       - name: update code
         git:
